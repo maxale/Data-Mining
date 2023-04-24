@@ -24,7 +24,7 @@ def loss_function(x,z):
         sum_distance += sum(sum((x[predict1 == i]-z.cluster_centers_[i])**2))
     return sum_distance
 
-import plot_decision_regions as pp
+import mlxtend.plotting as pp
 
 import matplotlib.pyplot as plt
 plt.figure(1)
@@ -45,7 +45,7 @@ kmeans.fit(X_train_std)
 loss = loss_function(X_test_std,kmeans)
 print('loss is : {} when k = 5'.format(loss))
 plt.figure(2)
-pp.plot_decision_regions(X_combined_std, y_combined,classifier=kmeans, test_idx=range(105,150))
+pp.plot_decision_regions(X_combined_std, y_combined, clf=kmeans, X_highlight=X_test)
 plt.xlabel('petal length [standardized]')
 plt.ylabel('petal width [standardized]')
 
@@ -55,7 +55,7 @@ kmeans2 = KMeans(n_clusters = 3, random_state= 0)
 kmeans2.fit(X_train_std)
 # loss2 = loss_function(X_test_std, kmeans2)
 # print(loss2)
-pp.plot_decision_regions(X_combined_std, y_combined,classifier=kmeans2, test_idx=range(105,150))
+pp.plot_decision_regions(X_combined_std, y_combined, clf=kmeans2, X_highlight=X_test)
 plt.xlabel('petal length [standardized]')
 plt.ylabel('petal width [standardized]')
 
@@ -68,7 +68,7 @@ loss_test = loss_function(X_test_std,kmeans_test)
 print(loss_test)
 print (kmeans_test.cluster_centers_ )
 print (kmeans_test.fit_predict(X_test_std))
-pp.plot_decision_regions(X_combined_std, y_combined,classifier=kmeans_test, test_idx=range(105,150))
+pp.plot_decision_regions(X_combined_std, y_combined, clf=kmeans_test, X_highlight=X_test)
 plt.xlabel('petal length [standardized]')
 plt.ylabel('petal width [standardized]')
 plt.show()
