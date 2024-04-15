@@ -25,7 +25,7 @@ import matplotlib.pyplot as plt
 from sklearn.neighbors import KNeighborsClassifier
 knn = KNeighborsClassifier(n_neighbors=1, p=2,metric='minkowski')
 knn.fit(X_train_std, y_train)
-pp.plot_decision_regions(X_combined_std, y_combined, clfr=knn, X_highlight=X_test_std)
+pp.plot_decision_regions(X_combined_std, y_combined, clf=knn, X_highlight=X_test_std)
 plt.xlabel('petal length [standardized]')
 plt.ylabel('petal width [standardized]')
 plt.show()
@@ -36,7 +36,8 @@ from sklearn.neighbors import NearestNeighbors
 knn2 = NearestNeighbors(n_neighbors=3)
 knn2.fit(X_train_std)
 #print sum(sum((knn2.kneighbors(X_train_std)[0])))
-print knn2.kneighbors(X_train_std)[0]
+print(knn2.kneighbors(X_train_std)[0])
+
 '''
 def loss_function(x,k):
     sum_distance = sum(sum(k.kneighbors(X_test_std)[0]))
